@@ -113,7 +113,7 @@ for (var key in Module) {
 }
 // The environment setup code below is customized to use Module.
 // *** Environment setup code ***
-var ENVIRONMENT_IS_NODE = typeof process === 'object' && typeof require === 'function';
+var ENVIRONMENT_IS_NODE = false;
 var ENVIRONMENT_IS_WEB = typeof window === 'object';
 var ENVIRONMENT_IS_WORKER = typeof importScripts === 'function';
 var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIRONMENT_IS_WORKER;
@@ -126,8 +126,6 @@ if (ENVIRONMENT_IS_NODE) {
   Module['printErr'] = function(x) {
     process['stderr'].write(x + '\n');
   };
-  var nodeFS = require('fs');
-  var nodePath = require('path');
   Module['read'] = function(filename, binary) {
     filename = nodePath['normalize'](filename);
     var ret = nodeFS['readFileSync'](filename);
@@ -3866,7 +3864,7 @@ function copyTempDouble(ptr) {
           if (sock.server) {
              throw new FS.ErrnoError(ERRNO_CODES.EINVAL);  // already listening
           }
-          var WebSocketServer = require('ws').Server;
+          var WebSocketServer = null;
           var host = sock.saddr;
           sock.server = new WebSocketServer({
             host: host,
@@ -5310,7 +5308,6 @@ function copyTempDouble(ptr) {
 FS.staticInit();__ATINIT__.unshift({ func: function() { if (!Module["noFSInit"] && !FS.init.initialized) FS.init() } });__ATMAIN__.push({ func: function() { FS.ignorePermissions = false } });__ATEXIT__.push({ func: function() { FS.quit() } });Module["FS_createFolder"] = FS.createFolder;Module["FS_createPath"] = FS.createPath;Module["FS_createDataFile"] = FS.createDataFile;Module["FS_createPreloadedFile"] = FS.createPreloadedFile;Module["FS_createLazyFile"] = FS.createLazyFile;Module["FS_createLink"] = FS.createLink;Module["FS_createDevice"] = FS.createDevice;
 ___errno_state = Runtime.staticAlloc(4); HEAP32[((___errno_state)>>2)]=0;
 __ATINIT__.unshift({ func: function() { TTY.init() } });__ATEXIT__.push({ func: function() { TTY.shutdown() } });TTY.utf8 = new Runtime.UTF8Processor();
-if (ENVIRONMENT_IS_NODE) { var fs = require("fs"); NODEFS.staticInit(); }
 __ATINIT__.push({ func: function() { SOCKFS.root = FS.mount(SOCKFS, {}, null); } });
 Module["requestFullScreen"] = function(lockPointer, resizeCanvas) { Browser.requestFullScreen(lockPointer, resizeCanvas) };
   Module["requestAnimationFrame"] = function(func) { Browser.requestAnimationFrame(func) };
