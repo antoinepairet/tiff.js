@@ -1,0 +1,13 @@
+{
+  "name": "tiff.js",
+  "version": "0.1.0",
+  "description": "tiff.js is a port of LibTIFF by compiling the LibTIFF C code with Emscripten.",
+  "main": "tiff.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seikichi/tiff.js"
+  }
+}
