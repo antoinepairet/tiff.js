@@ -113,7 +113,7 @@ for (var key in Module) {
 }
 // The environment setup code below is customized to use Module.
 // *** Environment setup code ***
-var ENVIRONMENT_IS_NODE = false;
+var ENVIRONMENT_IS_NODE = true;
 var ENVIRONMENT_IS_WEB = typeof window === 'object';
 var ENVIRONMENT_IS_WORKER = typeof importScripts === 'function';
 var ENVIRONMENT_IS_SHELL = !ENVIRONMENT_IS_WEB && !ENVIRONMENT_IS_NODE && !ENVIRONMENT_IS_WORKER;
